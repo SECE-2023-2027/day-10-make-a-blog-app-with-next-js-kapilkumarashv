@@ -1,15 +1,19 @@
+'use client';
 
-
-import './globals.css'
-export const metadata = {
-  title: 'Simple Blog',
-  description: 'A basic blog built with Next.js',
-};
+import { SessionProvider } from 'next-auth/react';
+import { AuthProvider } from './context/AuthContext';
+import './globals.css';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <SessionProvider>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
